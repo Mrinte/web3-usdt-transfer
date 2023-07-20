@@ -10,17 +10,17 @@
 
 # Install
 
-Set minimum stability to dev
+设置 minimum stability 为 dev
 ```
 "minimum-stability": "dev"
 ```
 
-Then
+然后执行安装：
 ```
-composer require mrinte/web3.php dev-master
+composer require mrinte/web3.php
 ```
 
-Or you can add this line in composer.json
+或者在 composer.json 中的 require 内加如下代码，
 
 ```
 "mrinte/web3.php": "dev-master"
@@ -33,25 +33,23 @@ Or you can add this line in composer.json
 ```php
 use MrInte\Web3USDTTransfer;
 
-$data['contractAddress']  = '0x55d398326f99059fF775485246999027B3197955';    // 这是向安智能链（BNB Chain) 代币BSC的USDT合约地址；
-$data['contractABI']      = 'ABI的JSON字条串，可以通过 $data['contractAddress'] 的值在 https://bscscan.com/ 上查看ABI；内容太长，不便显示，下面补充！';
+// 这是向安智能链（BNB Chain) 代币BSC的USDT合约地址；
+$data['contractAddress']  = '0x55d398326f99059fF775485246999027B3197955';
+
+$data['contractABI']      = 'ABI的JSON字条串，内容太长，不便显示，下面补充！';
 $data['PrivateKey']       = '转出账号的私钥';
 $data['fromAccount']      = '转出账号';
 $data['ToAddr']           = '接收账号';
 $data['payAmount']        = '转账数额';
 $data['ChainUrl']         = 'https://bsc-dataseed1.binance.org';    // 网络 RPC URL
 $data['chainId']          = '56';    // 链 ID
-$web3 = new Web3('http://localhost:8545');
+
+$USDTTransfer = new Web3USDTTransfer(data);    // 返回交易希哈址地（USDTTransfer）
 ```
 
-### Using provider
-```php
-use Web3\Web3;
-use Web3\Providers\HttpProvider;
-use Web3\RequestManagers\HttpRequestManager;
+### contractABI
+可以通过 $data["contractAddress"] 的值在 https://bscscan.com/ 上查看ABI；
 
-$web3 = new Web3(new HttpProvider(new HttpRequestManager('http://localhost:8545')));
-
-// timeout
-$web3 = new Web3(new HttpProvider(new HttpRequestManager('http://localhost:8545', 0.1)));
+```json
+[{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"constant":true,"inputs":[],"name":"_decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getOwner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"renounceOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
 ```
