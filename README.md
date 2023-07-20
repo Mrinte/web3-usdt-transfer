@@ -7,8 +7,9 @@
 
 本插件用于币安智能链（BNB Chain）的USDT插件转账，其它代币可自行修改ABI和网络URL、合约ABI进行使用；
 
+# 作者
 
-# Install
+# 安装引用
 
 设置 minimum stability 为 dev
 ```
@@ -27,9 +28,9 @@ composer require mrinte/Web3-USDT-Transfer
 ```
 
 
-# Usage
+# 使用方法
 
-### New instance
+### 转账
 ```php
 use MrInte\Web3USDTTransfer;
 
@@ -47,7 +48,7 @@ $data['chainId']          = '56';    // 链 ID
 $USDTTransfer = new Web3USDTTransfer(data);    // 返回交易希哈址地（USDTTransfer）
 ```
 
-### contractABI
+### 合约ABI（contractABI）
 可以通过 $data["contractAddress"] 的值在 https://bscscan.com/ 上查看ABI；
 
 ```json
