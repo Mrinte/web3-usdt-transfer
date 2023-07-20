@@ -49,7 +49,7 @@ $USDTTransfer = new Web3USDTTransfer(data);    // 返回交易希哈址地（USD
 ```
 
 ### 合约ABI（contractABI）
-可以通过 $data["contractAddress"] 的值在 https://bscscan.com/ 上查看ABI；
+可以通过 $data["contractAddress"] 的值在 [https://bscscan.com/](https://bscscan.com/address/0x55d398326f99059ff775485246999027b3197955#code) 上查看ABI；
 
 ```json
 [
