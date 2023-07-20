@@ -17,13 +17,13 @@
 
 然后执行安装：
 ```
-composer require mrinte/web3.php
+composer require mrinte/Web3-USDT-Transfer
 ```
 
 或者在 composer.json 中的 require 内加如下代码，
 
 ```
-"mrinte/web3.php": "dev-master"
+"mrinte/Web3-USDT-Transfer": "dev-master"
 ```
 
 
