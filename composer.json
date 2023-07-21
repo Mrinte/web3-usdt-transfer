@@ -1,0 +1,38 @@
+{
+    "name": "mrinte/web3-usdt-transfer",
+    "type": "libaray",
+    "license": "MIT",
+    "description": "本插件用于币安智能链（BNB Chain）的USDT插件转账，其它代币可自行修改ABI和网络URL、合约ABI进行使用",
+    "keywords": [
+        "web3",
+        "web3.php",
+        "BNB",
+        "BSC",
+        "USDT",
+        "USD",
+        "BSC-USD",
+        "transfer",
+        "ethereum",
+        "ETH",
+        "Tether",
+        "BEP20",
+        "BEP20USDT"
+    ],
+    "authors": [
+        {
+            "name": "MrInte",
+            "email": "617893305@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0",
+        "mrinte/web3.php": "^0.1.6",
+        "mrinte/ethereum-tx": "^0.4.3",
+        "mrinte/dump5": "^2.0",
+        "mrinte/ethtool": "^2.0"
+    },
+    "psr-4": {
+      "MrInte\\": "src/"
+    }
+}
