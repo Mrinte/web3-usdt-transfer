@@ -47,7 +47,8 @@ $data['payAmount']        = 0.01;       // 转账数额（数值）
 $data['ChainUrl']         = 'https://bsc-dataseed1.binance.org';    // 网络 RPC URL
 $data['chainId']          = 56;         // 链 ID （数值）
 
-$USDTTransfer = new Web3USDTTransfer($data);    // 返回交易哈希址地（USDTTransfer）字符串
+$Transfer     = new Web3USDTTransfer();
+$USDTTransfer = $Transfer->USDTTransfer($data);  // 返回交易哈希址地（USDTTransfer）字符串
 ```
 
 ### 通过交易哈希获取交易信息
@@ -58,7 +59,8 @@ use MrInte\Web3USDTTransfer;
 $ChainUrl        = 'https://bsc-dataseed1.binance.org';    // 网络 RPC URL
 $TransactionHash = '交易哈希字条串';
 
-$Transaction = $Web3USDTTransfer->getTransferStatus($ChainUrl,$TransactionHash);;    // 返回交易详情对象和数组
+$Transfer    = new Web3USDTTransfer();
+$Transaction = $Transfer->getTransferStatus($ChainUrl,$TransactionHash); // 返回交易详情对象和数组
 ```
 
 ### 合约ABI（contractABI）
