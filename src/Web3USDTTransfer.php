@@ -130,24 +130,12 @@ class Web3USDTTransfer{
 		return $Callback->result;
     }
     
-    public function getTransferStatus($Data,$Transaction){
-        
-		$contractAddress   = (isset($Data['contractAddress']) && trim($Data['contractAddress'] != '') ? trim($Data['contractAddress']) : $this->contractAddress);
-		$ChainUrl   = (isset($Data['ChainUrl'])     && trim($Data['ChainUrl'])      != '' ? trim($Data['ChainUrl'])     : $this->ChainUrl);
-		$contractABI= (isset($Data['contractABI'])  && trim($Data['contractABI'])   != '' ? trim($Data['contractABI'])  : $this->contractABI);
-		$chainId    = (isset($Data['chainId'])      && intval($Data['chainId'])     > 0   ? intval($Data['chainId'])    : $this->chainId);
-		
-		$PrivateKey = trim($Data['PrivateKey']);
-		$fromAccount= trim($Data['fromAccount']);
-		$ToAddr		= trim($Data['ToAddr']);
-		$payAmount  = round($Data['payAmount'],2);
-		
+    public function getTransferStatus($paramChainUrl,$Transaction){
+		$ChainUrl   = (trim($paramChainUrl) != '' ? trim($paramChainUrl) : $this->ChainUrl);
 		$Web3       = new Web3($ChainUrl);
-		$contract   = new Contract($ChainUrl, $contractABI);
 		$Callback   = new Callback();
-		$eth        = $contract->eth;
-		
-		$eth->getTransactionReceipt($Transaction,$Callback);
+
+		$Web3->eth->getTransactionReceipt($Transaction,$Callback);
 		
 		$result['Object'] = $Callback->result;
 		
