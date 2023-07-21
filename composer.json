@@ -1,5 +1,5 @@
 {
-    "name": "mrinte/Web3-USDT-Transfer",
+    "name": "mrinte/web3-usdt-transfer",
     "type": "libaray",
     "license": "MIT",
     "description": "本插件用于币安智能链（BNB Chain）的USDT插件转账，其它代币可自行修改ABI和网络URL、合约ABI进行使用",
@@ -33,7 +33,7 @@
         "mrinte/ethtool": "^2.0"
     },
     "psr-4": {
-      "MrInte\\Web3USDTTransfer\\": "src/"
+      "MrInte\\": "src/"
     },
     "autoload-dev": {
         "psr-4": {
