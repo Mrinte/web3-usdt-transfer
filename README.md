@@ -26,7 +26,9 @@ composer require mrinte/Web3-USDT-Transfer
 ```
 "mrinte/Web3-USDT-Transfer": "dev-master"
 ```
+# PHP 扩展
 
+需要安装PHP的 gmp 扩展，是否需要安装其它扩展可根据情况安装；
 
 # 使用方法
 
