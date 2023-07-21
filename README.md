@@ -43,9 +43,9 @@ $data['contractABI']      = 'ABI的JSON字条串，内容太长，不便显示�
 $data['PrivateKey']       = '转出账号的私钥';
 $data['fromAccount']      = '转出账号';
 $data['ToAddr']           = '接收账号';
-$data['payAmount']        = '转账数额';
+$data['payAmount']        = 转账数额;    // 数值
 $data['ChainUrl']         = 'https://bsc-dataseed1.binance.org';    // 网络 RPC URL
-$data['chainId']          = '56';    // 链 ID
+$data['chainId']          = 56;         // 链 ID （数值）
 
 $USDTTransfer = new Web3USDTTransfer($data);    // 返回交易哈希址地（USDTTransfer）字符串
 ```
