@@ -89,9 +89,9 @@ class Web3USDTTransfer{
 		
 		//余额
 		$contract->at($contractAddress)->call('balanceOf', $fromAccount, ['from' => $fromAccount], $Callback);
-		//$balance = floatval($Callback->result[0]->toString()) / 1000000000000000000;
-		$balance = floatval($Web3->utils->fromWei($Callback->result[0]->toString(), 'ether'));
-
+		$balance = $Web3->utils->fromWei($Callback->result[0]->toString(),'ether');
+		$balance  = round(hexdec($balance[0]).'.'.(str_pad($balance[1],18,".")),5);
+		
 		// 订单序号
 		$eth->getTransactionCount($fromAccount,$Callback);
 		$nonce_int  = strval($Callback->result->value);
@@ -106,7 +106,7 @@ class Web3USDTTransfer{
 		    'nonce'     => $nonce,
 		    'from'      => $fromAccount,
 		    'to'        => $contractAddress,
-		    'gas'       => $Web3->utils->toHex(strval(7000000),true),
+		    'gas'       => $Web3->utils->toHex(strval(8000000),true),
 		    'value'     => '0x0',
 		    'data'      => $rawTransactionData,
 		];
@@ -139,6 +139,7 @@ class Web3USDTTransfer{
 		$Web3->eth->getTransactionReceipt($Transaction,$Callback);
 		
 		$result['Object'] = $Callback->result;
+		$result['Object']->usdtValue = $Callback->result->logs[0]->data;
 		
 		$result["Array"]                        = json_decode(json_encode($Callback->result),true);
 		$result["Array"]['type']                = hexdec($result['Array']['type']);
@@ -149,7 +150,10 @@ class Web3USDTTransfer{
 		$result["Array"]['transactionIndex']    = hexdec($result['Array']['transactionIndex']);
 		$result["Array"]['effectiveGasPrice']   = hexdec($result['Array']['effectiveGasPrice']);
 		
+		$usdtValue  = $Web3->utils->fromWei(strval(hexdec($Callback->result->logs[0]->data)),'ether');
+		$usdtValue  = round(hexdec($usdtValue[0]).'.'.(str_pad($usdtValue[1],18,".")),5);
+		$result['Array']['usdtValue'] = $usdtValue;
+
 		return $result;
     }
-    
 }
