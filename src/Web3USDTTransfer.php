@@ -89,7 +89,8 @@ class Web3USDTTransfer{
 		
 		//余额
 		$contract->at($contractAddress)->call('balanceOf', $fromAccount, ['from' => $fromAccount], $Callback);
-		$balance = floatval($Callback->result[0]->toString()) / 1000000000000000000;
+		//$balance = floatval($Callback->result[0]->toString()) / 1000000000000000000;
+		$balance = floatval($Web3->utils->fromWei($Callback->result[0]->toString(), 'ether'));
 
 		// 订单序号
 		$eth->getTransactionCount($fromAccount,$Callback);
@@ -105,7 +106,7 @@ class Web3USDTTransfer{
 		    'nonce'     => $nonce,
 		    'from'      => $fromAccount,
 		    'to'        => $contractAddress,
-		    'gas'       => $Web3->utils->toHex(strval(8000000),true),
+		    'gas'       => $Web3->utils->toHex(strval(7000000),true),
 		    'value'     => '0x0',
 		    'data'      => $rawTransactionData,
 		];
