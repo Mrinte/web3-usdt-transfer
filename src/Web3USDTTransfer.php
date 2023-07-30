@@ -139,7 +139,10 @@ class Web3USDTTransfer{
 		$Web3->eth->getTransactionReceipt($Transaction,$Callback);
 		
 		$result['Object'] = $Callback->result;
-		$result['Object']->usdtValue = $Callback->result->logs[0]->data;
+		if(!isset($Callback->result->logs[0]->data)){
+		    return false;
+    		$result['Object']->usdtValue = $Callback->result->logs[0]->data;
+		}
 		
 		$result["Array"]                        = json_decode(json_encode($Callback->result),true);
 		$result["Array"]['type']                = hexdec($result['Array']['type']);
@@ -150,10 +153,12 @@ class Web3USDTTransfer{
 		$result["Array"]['transactionIndex']    = hexdec($result['Array']['transactionIndex']);
 		$result["Array"]['effectiveGasPrice']   = hexdec($result['Array']['effectiveGasPrice']);
 		
-		$usdtValue  = $Web3->utils->fromWei(strval(hexdec($Callback->result->logs[0]->data)),'ether');
-		$usdtValue  = round(hexdec($usdtValue[0]).'.'.(str_pad($usdtValue[1],18,".")),5);
-		$result['Array']['usdtValue'] = $usdtValue;
+		$usdtValue = number_format(hexdec($Callback->result->logs[0]->data),0,'.','');
+		$usdtValue = $Web3->utils->fromWei($usdtValue,'gether');
 
-		return $result;
+		$usdtValue  = round($usdtValue[0].'.'.(str_pad($usdtValue[1], 18, '0', STR_PAD_LEFT)),5);
+		$result['Array']['usdtValue'] = $usdtValue;
+        
+        return $result;
     }
 }
