@@ -29,7 +29,6 @@
         "php": ">=7.0",
         "mrinte/web3.php": "^0.1.6",
         "mrinte/ethereum-tx": "^0.4.3",
-        "mrinte/dump5": "^2.0",
         "mrinte/ethtool": "^2.0"
     },
     "autoload": {
